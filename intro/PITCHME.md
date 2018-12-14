@@ -1,2 +1,6 @@
-### This is the intro slide
-More content here
+Ricky Harkins
+https://github.com/ricketysplit
+
+@snap[north-west]
+Alliance of American Football
+@snapend
