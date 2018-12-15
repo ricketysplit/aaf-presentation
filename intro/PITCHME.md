@@ -1,4 +1,5 @@
-Ricky Harkins
+@title[About Me]
+@box[test-class](Ricky Harkins)
 https://github.com/ricketysplit
 
 @snap[north-west]

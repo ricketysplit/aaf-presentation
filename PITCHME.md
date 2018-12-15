@@ -1,11 +1,5 @@
-@title(AAF Presentation)
-Ricky Harkins
 ---?include=intro/PITCHME.md
----
-Setup the situation
----
-Explain the problem
----
-Suggest solution
----
-Demonstrate implementation
+---?include=requirements/PITCHME.md
+---?include=situation/PITCHME.md
+---?include=solution/PITCHME.md
+---?include=implementation/PITCHME.md
