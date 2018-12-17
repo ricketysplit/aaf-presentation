@@ -1,0 +1,54 @@
+Requirements
+
+The project I was working on was a management tool for crop genetic hierarchies.  A user needed the ability to filter 
+through a large number of different crop products, select the ones they're interested in, and then compare and contrast 
+data gathered through a variety of trials.  
+
+Each product was a part of a multi-tiered hierarchy, of dynamic depth, where the highest parent was an unaltered base
+germplasm and the lowest child of each tree was a commercialize product, like corn or soybeans.
+
+The application ingested these products from a centralized API, and queried other API's to gather other information needed
+within our application.  
+
+Each hierarchy had one germplasm as a parent, which could then spawn an tree of child germplams of infinite length.
+
+These hierarchies were to be viewed as a scrollable list, with each hierarchy shown as a stylized tree.  Depending on the
+crop type, each hierarchy could be displayed from bottom to top or reversed.
+
+Situation
+
+When I joined the project, the structure of these hierarchies was maintained by two separate MongoDB collections.
+
+One collection held each germplasm, with a unique id, as well as a corrosponding hierarchy id.  The other collection held
+a json object that represented the structure of the hierarchy as germplasm id (SHOW EXAMPLE IN CODE)
+
+When the hierarchies API endpoint was queried, the hierarchy collection would return the hierarchies based on a set of 
+filters and then replace each germplasm id with the full germplasm object from the product collection.
+
+In the UI, the order in which the hierarchy tree was displayed was hardcoded to a list of crops, and there was a separate
+React component depending on the direction the hierarchy should be displayed.  Each type of product had a different 
+component.
+
+Problems
+
+The issues with this approach were most apparent in the maintainability of the hierarchy endpoint.  The endpoint was expected to map
+through all the hierarchies, map through every branch in the hierarchy tree, and replace the germplasm id with the germplasm
+object.  This led to GET calls more than a several seconds.  Also, maintaining this hierarchy was messy.  Every timw a new
+product would be ingested, we would have to find the parent germplasm, get its hierarchy id, and find the matching hierarchy
+in the hierarchy collection.  That hierarchy would then be traversed down every branch to find the parent id.  Then the new
+product could be added as a child of that parent.  Since new products could come in sometimes 1000 as a time, this POST would 
+take forever
+
+On the UI, we were starting to run into trouble maintaining the two separate components.  Changes made to one component would
+not be perpetuated into the other component.  
+
+Solution
+
+We needed to be able to combine the UI into one component, and also stop maintaining the actual hierarchy in the hierarchy collection
+
+Implementation
+
+First, in the DB, I added a parentId field to all germplasms.  I updated the process that ingests new products to include
+parentId on import.  I then ran a one time script that traversed the documents in the hierarchy collection to determine the
+parentId of every product.  That left me with one collection, the product collection, that held all products.
+
