@@ -1,2 +1,5 @@
 @title[Requirements]
-This is what is needed
+Something
+---
+@snap[east span-50] East side @snapend
+@snap[west span-50] West side @snapend
