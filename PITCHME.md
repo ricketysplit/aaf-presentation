@@ -3,3 +3,4 @@
 ---?include=situation/PITCHME.md
 ---?include=solution/PITCHME.md
 ---?include=implementation/PITCHME.md
+---?include=ending/PITCHME.md
