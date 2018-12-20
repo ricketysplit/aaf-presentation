@@ -1,7 +1,7 @@
-@title[Implementation]
-API Implementation
+### API Implementation
 ---
-@snap[north]
+@title[Remove the Hierarchy]
+@snap[north span-70]
 Remove the hierarchy structure from the collection
 @snapend
 ```json
@@ -23,7 +23,8 @@ Remove the hierarchy structure from the collection
 }
 ```
 ---
-@snap[north]
+@title[Remove the Hierarchy 2]
+@snap[north span-70]
 Remove the hierarchy structure from the collection
 @snapend
 ```json
@@ -33,6 +34,7 @@ Remove the hierarchy structure from the collection
 }
 ```
 ---
+@title[Add parentId]
 @snap[north span-70]
 Add parentId to every product
 @snapend
@@ -44,6 +46,7 @@ Add parentId to every product
 }
 ```
 ---
+@title[Add parentId 2]
 @snap[north span-70]
 Add parentId to every product
 @snapend
@@ -56,13 +59,15 @@ Add parentId to every product
 }
 ```
 ---
+@title[API Results]
 @snap[midpoint span-90]
 Now the data in the hierarchy collection can queried to return `hierarchyIds`, 
 which can then be used to return all the products as an array
 @snapend
 ---
-UI Implementation
+### UI Implementation
 ---
+@title[Get Base Products]
 Get all base products
 ```javascript
 const getAllProducts = state.products;
@@ -72,6 +77,7 @@ const getBaseProducts =
     });
 ```
 ---
+@title[Create Selector]
 Create a memoized selector
 ```javascript
 const getAllProducts = state.products;
@@ -87,7 +93,7 @@ const getChildren = productId =>
         groupedProducts => groupedProducts[productId]);
 ```
 ---
-@title[Implementation 2]
+@title[Create UI Component]
 Create a reversible component
 with React Component arrays
 ```javascript
@@ -103,6 +109,7 @@ class ReversibleHierarchy extends React.PureComponent {
         ];
         ```
 ---
+@title[Create UI Component cont'd]
 ```javascript
         return <React.Fragment>
             {reverse 

@@ -1,6 +1,8 @@
 @title[About Me]
-@box[test-class](Ricky Harkins)
+### Ricky Harkins
+@snap[south-east]
 https://github.com/ricketysplit
+@snapend
 
 @snap[north-west]
 Alliance of American Football

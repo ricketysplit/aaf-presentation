@@ -1,8 +1,6 @@
-@title[Situation]
-
-Current Implementation
-
+### Current Implementation
 ---
+@title[Product Schema]
 Product Collection MongoDB schema
 
 ```json
@@ -12,8 +10,8 @@ Product Collection MongoDB schema
     ...otherData
 }
 ```
-
 ---
+@title[Hierarchy Schema]
 Hierarchy Collection MongoDB schema
 ```json
 {
@@ -34,11 +32,7 @@ Hierarchy Collection MongoDB schema
 }
 ```
 ---
-UI View Example
----
-Challenge
----
-Issues with Current Implementation
+### Issues with Current Implementation
 @ul
 - Hierarchy document difficult to maintain
 - Building the hierarchy on the fly led to long wait times on the GET endpoint
